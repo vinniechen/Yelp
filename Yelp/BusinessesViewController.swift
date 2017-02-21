@@ -12,6 +12,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var tableView: UITableView!
     var businesses: [Business]!
+    var filteredData: [String]!
     
     
     override func viewDidLoad() {
@@ -25,7 +26,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.estimatedRowHeight = 120
         
         let searchBar = UISearchBar()
+        searchBar.sizeToFit()
+        
         searchBar.delegate = self
+        
         self.navigationItem.titleView = searchBar
         
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
@@ -73,6 +77,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
         
     }
+    
+    
 
     
     override func didReceiveMemoryWarning() {
